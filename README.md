@@ -1,5 +1,7 @@
 # 안녕하세요 이것은 index.html 입니다
 
+### 링크-https://jinwoo6607.github.io/web002/
+
 ### 숫자맞추기게임
 
 
@@ -7,4 +9,4 @@
 ![스크린샷 2025-03-20 135351](https://github.com/user-attachments/assets/721c5e2b-bdbc-47e0-b7cb-96f8d65ccee8)
 
 
-### 링크-https://jinwoo6607.github.io/web002/
+
