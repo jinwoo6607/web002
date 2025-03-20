@@ -3,62 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>간단한 웹 페이지</title>
+    <title>숫자 맞추기 게임</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
         }
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
+        h1 {
+            color: #333;
         }
-        main {
-            padding: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        .content {
+        .game-container {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        a {
-            color: #333;
-            text-decoration: none;
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 50px;
+            text-align: center;
         }
-        a:hover {
-            text-decoration: underline;
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>환영합니다!</h1>
-    </header>
+    <h1>숫자 맞추기 게임</h1>
 
-    <main>
-        <div class="content">
-            <h2>이것은 간단한 HTML 페이지입니다.</h2>
-            <p>여기에서 다양한 내용들을 추가할 수 있습니다.</p>
-            <p><a href="https://www.example.com" target="_blank">외부 사이트로 이동하기</a></p>
-        </div>
-    </main>
+    <div class="game-container">
+        <p>1부터 100 사이의 숫자를 추측해보세요!</p>
+        <input type="number" id="userInput" placeholder="숫자 입력" min="1" max="100">
+        <button onclick="checkGuess()">추측하기</button>
 
-    <footer>
-        <p>© 2025 나의 웹사이트</p>
-    </footer>
+        <div class="message" id="message"></div>
+        <div class="message" id="attempts"></div>
+    </div>
+
+    <script>
+        // 게임 변수 초기화
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        // 추측하기 함수
+        function checkGuess() {
+            const userInput = document.getElementById("userInput").value;
+            const message = document.getElementById("message");
+            const attemptsDisplay = document.getElementById("attempts");
+
+            attempts++;
+
+            if (userInput == randomNumber) {
+                message.textContent = `정답! ${attempts}번 만에 맞췄습니다! 🎉`;
+                message.style.color = "green";
+                attemptsDisplay.textContent = "";
+            } else if (userInput < randomNumber) {
+                message.textContent = "더 큰 숫자를 입력하세요!";
+                message.style.color = "orange";
+                attemptsDisplay.textContent = `시도 횟수: ${attempts}`;
+            } else {
+                message.textContent = "더 작은 숫자를 입력하세요!";
+                message.style.color = "orange";
+                attemptsDisplay.textContent = `시도 횟수: ${attempts}`;
+            }
+
+            // 입력값 초기화
+            document.getElementById("userInput").value = "";
+            document.getElementById("userInput").focus();
+        }
+    </script>
 </body>
 </html>
